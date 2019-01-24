@@ -46,6 +46,8 @@
   when: not stat_adb_command.stat.exists
 
 - block:
+  - name: Accept Licences
+    command: "yes | {{ android_home }}/tools/bin/sdkmanager --licenses"
   - name: Install extra components
     command: "{{ android_home }}/tools/bin/sdkmanager {{ item }}"
     with_items: "{{ android_extra_components }}"
